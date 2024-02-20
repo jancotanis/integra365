@@ -1,4 +1,7 @@
 # Integra Office365 backup API
+[![Version](https://img.shields.io/gem/v/integra365.svg)](https://rubygems.org/gems/integra365)
+[![Maintainability](https://api.codeclimate.com/v1/badges/41dec06ba5200b40b44e/maintainability)](https://codeclimate.com/github/jancotanis/integra365/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/41dec06ba5200b40b44e/test_coverage)](https://codeclimate.com/github/jancotanis/integra365/test_coverage)
 
 This is a wrapper for the Integra Office365 backup API. You can see the API endpoints here https://api.integra-bcs.nl/swagger/index.html
 
@@ -24,7 +27,7 @@ Or install it yourself as:
 
 Before you start making the requests to API provide the client id and client secret and email/password using the configuration wrapping.
 
-```
+```ruby
 require 'integra365'
 
 Integra365.configure do |config|
@@ -43,7 +46,7 @@ end
 
 ## Resources
 ### Authentication
-```
+```ruby
 # setup configuration
 #
 client.login
@@ -55,7 +58,7 @@ client.login
 
 ### Tenant
 Endpoint for tenant related requests 
-```
+```ruby
 licenses = client.tenant_licenses
 ```
 
@@ -68,7 +71,7 @@ licenses = client.tenant_licenses
 
 ### BackupJobReporting
 BackupJobReporting for status of backup jobs
-```
+```ruby
 job_statuses = client.backup_job_reporting
 
 ```

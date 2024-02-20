@@ -1,4 +1,4 @@
-require 'Dotenv'
+require 'dotenv'
 require 'logger'
 require "test_helper"
 
