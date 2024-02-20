@@ -1,4 +1,4 @@
-require 'Dotenv'
+require 'dotenv'
 require 'logger'
 require "test_helper"
 
@@ -12,7 +12,7 @@ describe 'auth' do
   end
   it "#1 not logged in" do
     c = Integra365.client({ logger: Logger.new(AUTH_LOGGER) })
-    assert_raises Faraday::BadRequestError do
+    assert_raises Integra365::ConfigurationError do
       c.login
     end
   end
@@ -24,6 +24,12 @@ describe 'auth' do
     end
     c = Integra365.client({ logger: Logger.new(AUTH_LOGGER) })
     refute_empty c.login, ".login"
+    a = c.access_token
+    r = c.refresh_token
+
+    c.token_refresh(c.refresh_token)
+    assert a != c.access_token, "new access token"
+    assert r != c.refresh_token, "new refresh token"
   end
   it "#3 wrong credentials" do
     Integra365.configure do |config|
@@ -31,7 +37,7 @@ describe 'auth' do
       config.password = "doe"
     end
     c = Integra365.client({ logger: Logger.new(AUTH_LOGGER) })
-    assert_raises Exception do
+    assert_raises Integra365::AuthenticationError do
       c.login
     end
   end
