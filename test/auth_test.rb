@@ -1,44 +1,42 @@
-require 'dotenv'
-require 'logger'
-require "test_helper"
+# frozen_string_literal: true
 
-AUTH_LOGGER = "auth_test.log"
+require 'logger'
+require 'test_helper'
+
+AUTH_LOGGER = 'auth_test.log'
 File.delete(AUTH_LOGGER) if File.exist?(AUTH_LOGGER)
 
 describe 'auth' do
   before do
-    Dotenv.load
     Integra365.reset
   end
-  it "#1 not logged in" do
-    c = Integra365.client({ logger: Logger.new(AUTH_LOGGER) })
+  it '#1 not logged in' do
+    client = Integra365.client({ logger: Logger.new(AUTH_LOGGER) })
     assert_raises Integra365::ConfigurationError do
-      c.login
+      client.login
     end
   end
-  it "#2 logged in" do
 
+  it '#2 logged in' do
     Integra365.configure do |config|
-      config.username = ENV["INTEGRA365_USER"]
-      config.password = ENV["INTEGRA365_PASSWORD"]
+      config.username = ENV['INTEGRA365_USER']
+      config.password = ENV['INTEGRA365_PASSWORD']
     end
-    c = Integra365.client({ logger: Logger.new(AUTH_LOGGER) })
-    refute_empty c.login, ".login"
-    a = c.access_token
-    r = c.refresh_token
-
-    c.token_refresh(c.refresh_token)
-    assert a != c.access_token, "new access token"
-    assert r != c.refresh_token, "new refresh token"
+    client = Integra365.client({ logger: Logger.new(AUTH_LOGGER) })
+    refute_empty client.login, '.login'
+    rtoken = client.refresh_token
+    client.token_refresh(client.refresh_token)
+    assert rtoken != client.refresh_token, 'new refresh token'
   end
-  it "#3 wrong credentials" do
+
+  it '#3 wrong credentials' do
     Integra365.configure do |config|
-      config.username = "john"
-      config.password = "doe"
+      config.username = 'john'
+      config.password = 'doe'
     end
-    c = Integra365.client({ logger: Logger.new(AUTH_LOGGER) })
+    client = Integra365.client({ logger: Logger.new(AUTH_LOGGER) })
     assert_raises Integra365::AuthenticationError do
-      c.login
+      client.login
     end
   end
 end

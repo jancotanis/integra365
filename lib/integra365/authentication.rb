@@ -7,7 +7,7 @@ module Integra365
     def token(options = {})
       raise ConfigurationError.new 'Client id and/or secret not configured' unless self.username && self.password
       api_auth('Token', options)
-    rescue Faraday::BadRequestError => e
+    rescue Faraday::BadRequestError, Faraday::UnauthorizedError => e
 
       raise AuthenticationError.new 'Unauthorized; response ' + e.to_s
     end
@@ -17,7 +17,7 @@ module Integra365
     # token currrent token
     def token_refresh(token)
       api_refresh('Token/Refresh', token)
-    rescue Faraday::BadRequestError => e
+    rescue Faraday::BadRequestError, Faraday::UnauthorizedError => e
 
       raise AuthenticationError.new 'Unauthorized; response ' + e.to_s
     end

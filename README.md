@@ -1,9 +1,11 @@
 # Integra Office365 backup API
+
 [![Version](https://img.shields.io/gem/v/integra365.svg)](https://rubygems.org/gems/integra365)
 [![Maintainability](https://api.codeclimate.com/v1/badges/41dec06ba5200b40b44e/maintainability)](https://codeclimate.com/github/jancotanis/integra365/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/41dec06ba5200b40b44e/test_coverage)](https://codeclimate.com/github/jancotanis/integra365/test_coverage)
 
-This is a wrapper for the Integra Office365 backup API. You can see the API endpoints here https://api.integra-bcs.nl/swagger/index.html
+This is a wrapper for the Integra Office365 backup API.
+You can see the [API endpoints](https://api.integra-bcs.nl/swagger/index.html).
 
 Currently only the GET requests to get a list of tenants and backup job reports are implemented.
 
@@ -17,11 +19,15 @@ gem 'integra365'
 
 And then execute:
 
-    $ bundle install
+```console
+> bundle install
+```
 
 Or install it yourself as:
 
-    $ gem install integra365
+```console
+> gem install integra365
+```
 
 ## Usage
 
@@ -45,18 +51,22 @@ end
 ```
 
 ## Resources
+
 ### Authentication
+
 ```ruby
 # setup configuration
 #
 client.login
 ```
+
 |Resource|API endpoint|Description|
 |:--|:--|:--|
 |.token or .login|/Api/V1/Token portal user|
 |.token_refresh|/Api/V1/Token/Refresh|Refresh authentication token|
 
 ### Tenant
+
 Endpoint for tenant related requests 
 ```ruby
 licenses = client.tenant_licenses
@@ -69,7 +79,20 @@ licenses = client.tenant_licenses
 |.tenant_licenses(id) |/Api/V1/Tenants/{id}/Licenses|
 |.tenant_storage(id)|/Api/V1/Tenants/{id}/Storage|
 
+### BackupJobs
+
+Get list of backup jobs or by id and state
+
+|Resource|API endpoint|
+|:--|:--|
+|.backup_jobs|/Api/V1/BackupJobs|
+|.backup_job(id) .tenant(id)|/Api/V1/BackupJobs/{id}|
+|.backup_job_state(id)|/Api/V1/BackupJobs/{id}/State|
+|.backup_job_sessions(id)|/Api/V1/BackupJobs/{id}/Sessions|
+
+
 ### BackupJobReporting
+
 BackupJobReporting for status of backup jobs
 ```ruby
 job_statuses = client.backup_job_reporting
@@ -82,7 +105,7 @@ job_statuses = client.backup_job_reporting
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/jancotanis/integra365.
+Bug reports and pull requests are welcome on [GitHub](https://github.com/jancotanis/integra365).
 
 ## License
 

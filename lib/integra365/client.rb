@@ -7,6 +7,7 @@ module Integra365
     Dir[File.expand_path('client/*.rb', __dir__)].each { |f| require f }
 
     include Integra365::Client::Tenants
+    include Integra365::Client::BackupJobs
     include Integra365::Client::BackupJobReporting
   end
 end
