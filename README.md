@@ -7,7 +7,8 @@
 This is a wrapper for the Integra Office365 backup API.
 You can see the [API endpoints](https://api.integra-bcs.nl/swagger/index.html).
 
-Currently only the GET requests to get a list of tenants and backup job reports are implemented.
+Currently only the GET requests to get a list of tenants and backup job reports
+are implemented.
 
 ## Installation
 
@@ -31,7 +32,8 @@ Or install it yourself as:
 
 ## Usage
 
-Before you start making the requests to API provide the client id and client secret and email/password using the configuration wrapping.
+Before you start making the requests to API provide the client id and client secret and
+email/password using the configuration wrapping.
 
 ```ruby
 require 'integra365'
@@ -62,12 +64,13 @@ client.login
 
 |Resource|API endpoint|Description|
 |:--|:--|:--|
-|.token or .login|/Api/V1/Token portal user|
+|.token or .login|/Api/V1/Token|portal user|
 |.token_refresh|/Api/V1/Token/Refresh|Refresh authentication token|
 
 ### Tenant
 
-Endpoint for tenant related requests 
+Endpoint for tenant related requests
+
 ```ruby
 licenses = client.tenant_licenses
 ```
@@ -90,10 +93,10 @@ Get list of backup jobs or by id and state
 |.backup_job_state(id)|/Api/V1/BackupJobs/{id}/State|
 |.backup_job_sessions(id)|/Api/V1/BackupJobs/{id}/Sessions|
 
-
 ### BackupJobReporting
 
 BackupJobReporting for status of backup jobs
+
 ```ruby
 job_statuses = client.backup_job_reporting
 

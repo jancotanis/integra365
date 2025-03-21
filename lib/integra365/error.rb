@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module Integra365
-	
+
   # Generic error to be able to rescue all Integra365 errors
   class Integra365Error < StandardError; end
 

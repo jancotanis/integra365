@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Integra365
   # Wrapper for the Integra365 REST API
   #

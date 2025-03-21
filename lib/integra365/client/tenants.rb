@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Integra365
   class Client
-
     # Defines methods related to tenants
     # @see https://api.integra-bcs.nl/swagger/index.html
     module Tenants
@@ -9,9 +10,11 @@ module Integra365
         if id
           get("Tenants/#{id}")
         else
-          get("Tenants")
+          get('Tenants')
         end
       end
+
+      # Get tenant by id
       def tenant(id)
         tenants(id)
       end

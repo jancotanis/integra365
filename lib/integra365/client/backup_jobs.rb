@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 module Integra365
   class Client
-
     # Defines methods related to backup job reporting
     # @see https://api.integra-bcs.nl/swagger/index.html
     module BackupJobs
       # Get all backupjobs
       def backup_jobs
-        get("BackupJobs")
+        get('BackupJobs')
       end
 
       # Get backupjob by id

@@ -1,4 +1,6 @@
-require "wrapi"
+# frozen_string_literal: true
+
+require 'wrapi'
 require File.expand_path('authentication', __dir__)
 
 module Integra365

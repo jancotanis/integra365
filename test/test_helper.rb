@@ -11,7 +11,7 @@ require 'dotenv'
 
 def respond_to_template(template, object, class_name)
   template.keys do |key|
-    assert  object.respond_to?(key.to_sym), "method #{class_name}.#{key}"
+    assert object.respond_to?(key.to_sym), "method #{class_name}.#{key}"
   end
 end
 
